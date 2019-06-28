@@ -33,7 +33,7 @@ class App extends Component {
             </ul>
           </nav>
 
-          <React.Suspense fallback="<div>Loading...</div>">
+          <React.Suspense fallback="Cargando...">
             <Route path="/" exact component={Home}/>
             <Route path="/album/:id" component={Album}/>
             <Route path="/albums" exact component={Albums}/>
