@@ -6,3 +6,7 @@
 .App h1 {
   text-align: center;
 }
+
+.App img {
+  width: 40%;
+}
