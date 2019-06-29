@@ -3,9 +3,13 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    vendor: ['react', 'react-dom', 'react-router-dom','react-redux','redux','redux-thunk']
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
+    filename: '[name].[chunkhash:8].js',
     publicPath: "/",
     globalObject: 'this',
   },
@@ -37,6 +41,30 @@ module.exports = {
       "/api": {
         target: "http://localhost:3001",
        pathRewrite: { "^/api": "" }
+      }
+    }
+  },
+  optimization: {
+    // Importamos todos los módulos desde un único runtime
+    runtimeChunk: 'single',
+    // Configuramos splitChunks
+    splitChunks: {
+      // Configuramos los grupos de chunks
+      cacheGroups: {
+        // Definimos un grupo vendor que contendrá las
+        // librerías
+        vendor: {
+          // Apuntamos al entrypoint "vendor"
+          test: 'vendor',
+          // Le damos un nombre al chunk
+          name: 'vendor',
+          // Fuerza a Webpack a crear un chunk
+          // de este grupo siempre
+          enforce: true,
+          // Selecciona todos los tipos de chunks,
+          // síncronos y asíncronos
+          chunks: 'all'
+        }
       }
     }
   }
