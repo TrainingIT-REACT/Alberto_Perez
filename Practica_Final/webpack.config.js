@@ -7,8 +7,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/index.js',
-    vendor: ['react', 'react-dom', 'react-router-dom','react-redux','redux','redux-thunk'],
-    sw: './src/sw.js'
+    vendor: ['react', 'react-dom', 'react-router-dom','react-redux','redux','redux-thunk']
   },
   output: {
     path: path.resolve(__dirname, 'build'),

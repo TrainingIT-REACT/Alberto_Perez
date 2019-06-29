@@ -1,45 +1,28 @@
 /* eslint-disable no-undef, no-restricted-globals */
 
-//const cacheName = "app-files-v1";
-
-//const filesToCache = [
-//  '/vendor.js',
-//  '/manifest.json'
-//];
-
 // Esperamos al evento "install" para confirmar que el service-worker se ha
 // instalado.
 self.addEventListener('install', (event) => {
   console.log("El service worker ha sido instalado!");
-  // Forzamos al evento install a esperar la instalación de la cache antes
-  // de marcar el service worker como instalado
-//  event.waitUntil(
-    // Abrimos la caché
-//    caches.open(cacheName)
-//      .then(cache => {
-//        console.log("Cache abierta");
-        // Forzamos la caché de los distintos ficheros
-//        return cache.addAll(filesToCache);
-//      })
-//  )
+  // Ya no necesitamos gestionar la caché
 });
 
-/*
-// Interceptamos las peticiones
-self.addEventListener('fetch', function(event) {
-  // Respondemos al a petición
-  event.respondWith(
-    // Comprobamos si existe este elemento en la caché
-    caches.match(event.request)
-      .then(function(response) {
-        // Si existe la petición en la cache, la devolvemos
-        if (response) {
-          return response;
-        }
-        // Si no, retornamos la petición fetch
-        return fetch(event.request);
-      }
-    )
-  );
+// No necesitamos Interceptar las peticiones. En su lugar,
+// llamamos al método de workbox
+if (workbox !== null){
+  workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+}
+
+// Evento activate
+self.addEventListener('activate', (e) => {
+  console.log('activado');
 });
-*/
+
+// Evento de mensajes
+self.addEventListener('message', (e) => {
+  // Comprobamos que la acción sea la de saltar
+  // el estado de espera
+  if (e.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -12,7 +12,7 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="./manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -23,6 +23,26 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Reactify</title>
+    <style>
+      #updateApplication {
+        background-color: rgba(0, 0, 0, .7);
+        bottom: 2em;
+        box-shadow: 0px 6px 10px -5px rgba(0, 0, 0, .5);
+        border-radius: 5px;
+        color: white;
+        display: none;
+        font-size: .9em;
+        left: 2em;
+        position: absolute;
+        padding: 1em;
+      }
+      #updateApplication.show {
+        display: block;
+      }
+      #reload {
+        margin: 0 0 0 1em;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -37,5 +57,9 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div id="updateApplication">
+      Hay una nueva versión de esta aplicación
+      <button id="reload" class="button-primary">Recargar</button>
+    </div>
   </body>
 </html>
