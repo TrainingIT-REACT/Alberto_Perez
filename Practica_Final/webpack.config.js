@@ -1,6 +1,7 @@
 // Librerías
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,6 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[chunkhash:8].js',
+    //para fijar el server en dev
     publicPath: "/",
     globalObject: 'this',
   },
@@ -23,6 +25,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(ico|json)$/,
+        use: ['file-loader']
       }
     ]
   },
@@ -30,7 +36,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html"
-    })
+    }),
+    new CopyPlugin([
+      { from: 'public', to: '' },
+    ])
   ],
   devServer: {
     contentBase: './build',
@@ -40,7 +49,7 @@ module.exports = {
     proxy: {
       "/api": {
         target: "http://localhost:3001",
-       pathRewrite: { "^/api": "" }
+        pathRewrite: { "^/api": "" }
       }
     }
   },
