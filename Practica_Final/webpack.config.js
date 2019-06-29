@@ -2,11 +2,13 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
     main: './src/index.js',
-    vendor: ['react', 'react-dom', 'react-router-dom','react-redux','redux','redux-thunk']
+    vendor: ['react', 'react-dom', 'react-router-dom','react-redux','redux','redux-thunk'],
+    sw: './src/sw.js'
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -39,7 +41,10 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: 'public', to: '' },
-    ])
+    ]),
+    new WorkboxPlugin.InjectManifest({ 
+      swSrc: './src/sw.js', 
+    })
   ],
   devServer: {
     contentBase: './build',
