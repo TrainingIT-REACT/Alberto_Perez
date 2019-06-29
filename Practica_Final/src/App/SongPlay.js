@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 // Acciones
 import { getSong } from './actions/song';
 
-// Css
-import './App.css';
 
 class SongPlay extends Component {
 

@@ -7,6 +7,8 @@ import * as serviceWorker from './serviceWorker';
 // Store
 import store from './App/store';
 
+// Polyfills! 
+import '@babel/polyfill';
 
 ReactDOM.render(
   <Provider store={store}>

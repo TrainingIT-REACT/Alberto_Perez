@@ -8,8 +8,6 @@ import { getSongsByAlbum } from './actions/song';
 //components
 import SongList from './components/SongList'
 
-// Css
-import './App.css';
 
 class Album extends Component {
 
@@ -28,7 +26,7 @@ class Album extends Component {
       return <div>
               <p>Nombre: {this.props.album.album != null ? this.props.album.album.name : null}</p>
               <p>Artist: {this.props.album.album != null ? this.props.album.album.artist + " - " + this.props.album.album.total + "s" : null}</p>
-              <p><img src={this.props.album.album != null ? this.props.album.album.cover : null} 
+              <p><img src={this.props.album.album != null ? "/api"+this.props.album.album.cover : null} 
                       alt={this.props.album.album != null ? this.props.album.album.name : null}>
                  </img>
               </p>

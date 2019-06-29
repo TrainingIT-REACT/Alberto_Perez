@@ -1,25 +1,14 @@
-# Plantilla para la Práctica final
-
-En esta plantilla encontrarás todo lo necesario para realizar la práctica final. La aplicación de React ha sido generada utilizando [create-react-app](https://github.com/facebook/create-react-app). Esto te servirá como comienzo en el desarrollo, aunque tendrás que desarrollar tu propia configuración cuando llegues al apartado 8.
-
-A parte de la aplicación de React, esta plantilla incluye un servidor basadon en [json-server](https://github.com/typicode/json-server) al que puedes hacer peticiones. Este incluye dos tipos de recursos:
-
-* Álbums (albums)
-* Canciones (songs)
-
-Puedes ver los distintos parámetros en el fichero `./server/data.json`. A priori, no te hará falta modificar ese fichero, pero siempre puedes agregar nuevos elementos si quieres extender las funcionalidades de tu aplicación.
 
 ## Iniciar el proyecto
 
-El proyecto se inicia directamente con `yarn start`.
+El proyecto se inicia con `yarn start`.
+El servidor de albumes y canciones con `yarn server`.
 
-Este comando hace uso de `npm-run-all` que ejecuta el servidor y el cliente al mismo tiempo. El servidor estará escuchando en el puerto 3001 y la aplicación en el 3000. No obstante, la aplicación ya viene preconfigurada con un proxy que redirige cualquier llamada al servidor. Por ejemplo:
 
-```/albums -> http://localhost:3001/albums```
+## Preparación para producción
 
-## Dudas
+El pase a producción con `yarn build`.
 
-Cualquier duda que tengáis sobre la plantilla o el proyecto la podéis resolver en los foros. Estaré encantado de ayudarte a completar la práctica.
 
 ## Créditos
 

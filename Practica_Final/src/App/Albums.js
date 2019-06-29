@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 // Acciones
 import { getAlbums } from './actions/album';
 
-// Css
-import './App.css';
 
 class Albums extends Component {
 

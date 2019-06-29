@@ -30,7 +30,7 @@ const songsLoaded = (list) => ({
 export const getSongs = () => async (dispatch) => {
   dispatch(songsLoading());
   try {
-    const res = await fetch('/songs');
+    const res = await fetch('/api/songs');
     const json = await res.json();
     dispatch(songsLoaded(json));
   } catch {
@@ -55,7 +55,7 @@ const songsAlbumLoaded = (list) => ({
 export const getSongsByAlbum = (id) => async (dispatch) => {
   dispatch(songsAlbumLoading());
   try {
-    const res = await fetch(`/songs?album_id=${id}`);
+    const res = await fetch(`/api/songs?album_id=${id}`);
     const json = await res.json();
     dispatch(songsAlbumLoaded(json));
   } catch {
@@ -81,8 +81,9 @@ const songLoaded = (song) => ({
 export const getSong = (id) => async (dispatch) => {
   dispatch(songLoading());
   try {
-    const res = await fetch(`/songs/${id}`);
+    const res = await fetch(`/api/songs/${id}`);
     const json = await res.json();
+    console.log(json)
     dispatch(songLoaded(json));
     //track
     dispatch(trackSong(json));
