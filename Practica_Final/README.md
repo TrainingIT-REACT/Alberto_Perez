@@ -1,8 +1,15 @@
 
 ## Iniciar el proyecto
 
-El proyecto se inicia con `yarn start`.
-El servidor de albumes y canciones con `yarn server`.
+Levantar el servidor de albumes y canciones con `yarn server`.
+Despues la aplicacion con `yarn start`.
+
+
+## Test
+
+Test con `yarn test`.
+Test de integracion con `yarn test:integration`.
+
 
 
 ## Preparación para producción

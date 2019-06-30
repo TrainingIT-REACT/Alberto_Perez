@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
-// Css
-import './App.css';
 
 const Home = React.lazy(() => import('./Home'));
 const Login = React.lazy(() => import('./Login'));

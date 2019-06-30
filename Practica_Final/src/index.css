@@ -7,3 +7,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.App {
+  margin: 3em auto;
+  max-width: 50em;
+}
+
+.App h1 {
+  text-align: center;
+}
+
+.App img {
+  width: 40%;
+}

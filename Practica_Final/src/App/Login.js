@@ -27,8 +27,10 @@ class Login extends React.Component {
         <div className="row">
           <div className="six columns">
             <form onSubmit={this.onSubmit}>
-              <label htmlFor="#input">Name </label>
-              <input id="input" type="text" ref={this.input}/>
+              <div className="row">
+                <label htmlFor="name">Name </label>
+                <input id="name" type="text" ref={this.input} placeholder="Ángel, María, Cris, etc."/>
+              </div>
               <br/>
               <button>Login</button>
             </form>
