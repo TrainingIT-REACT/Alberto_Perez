@@ -5,6 +5,9 @@ const actions = [
   "TRACK_ALBUM",
   "TRACK_SONG",
 
+  // Server response
+  "TRACK_RESPONSE",
+
   // Songs
   "SONGS_LOADING",
   "SONGS_LOADED",
@@ -15,6 +18,9 @@ const actions = [
   "SONG_LOADING",
   "SONG_LOADED",
   "SONG_ERROR",
+  "SONGS_SEARCH_LOADING",
+  "SONGS_SEARCH_LOADED",
+  "SONGS_SEARCH_ERROR",
 
   // Album
   "ALBUMS_LOADING",

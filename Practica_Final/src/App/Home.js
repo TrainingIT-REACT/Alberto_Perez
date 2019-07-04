@@ -6,6 +6,7 @@ import { getSongs } from './actions/song';
 
 //components
 import SongList from './components/SongList'
+import SearchSong from './SearchSong'
 
 class Home extends Component {
 
@@ -35,6 +36,7 @@ class Home extends Component {
       <div>
         <h2>Top 5 de Canciones Recomendadas</h2>
         { this.renderSongs() }
+        <SearchSong history={this.props.history}/>
       </div>
     );
   }

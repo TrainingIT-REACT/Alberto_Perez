@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   list: [],
   song: null,
+  search: [],
   error: false
 }
 
@@ -46,16 +47,42 @@ const reducer = (state = initialState, action) => {
           isLoading: true,
           error: false
         };
-      case types.SONGS_ALBUM_LOADED:
+    case types.SONGS_ALBUM_LOADED:
+      // Almacenamos los articulos y reiniciamos
+      // las flags
+      return {
+        ...state,
+        isLoading: false,
+        list: action.list,
+        error: false
+      }
+    case types.SONGS_ALBUM_ERROR:
+      // Desactivamos la flag de carga y
+      // activamos la de error
+      return {
+        ...state,
+        isLoading: false,
+        error: true
+      }
+
+    case types.SONG_LOADING:
+        // Activamos la flag de isLoading.
+        // Eliminamos cualquier error anterior
+        return {
+          ...state,
+          isLoading: true,
+          error: false
+        };
+    case types.SONG_LOADED:
         // Almacenamos los articulos y reiniciamos
         // las flags
         return {
           ...state,
           isLoading: false,
-          list: action.list,
+          song: action.song,
           error: false
         }
-      case types.SONGS_ALBUM_ERROR:
+    case types.SONG_ERROR:
         // Desactivamos la flag de carga y
         // activamos la de error
         return {
@@ -64,31 +91,32 @@ const reducer = (state = initialState, action) => {
           error: true
         }
 
-      case types.SONG_LOADING:
-          // Activamos la flag de isLoading.
-          // Eliminamos cualquier error anterior
-          return {
-            ...state,
-            isLoading: true,
-            error: false
-          };
-      case types.SONG_LOADED:
-          // Almacenamos los articulos y reiniciamos
-          // las flags
-          return {
-            ...state,
-            isLoading: false,
-            song: action.song,
-            error: false
-          }
-      case types.SONG_ERROR:
-          // Desactivamos la flag de carga y
-          // activamos la de error
-          return {
-            ...state,
-            isLoading: false,
-            error: true
-          }
+    case types.SONGS_SEARCH_LOADING:
+      // Activamos la flag de isLoading.
+      // Eliminamos cualquier error anterior
+      return {
+        ...state,
+        isLoading: true,
+        error: false
+      };
+    case types.SONGS_SEARCH_LOADED:
+      // Almacenamos los articulos y reiniciamos
+      // las flags
+      console.log(action);
+      return {
+        ...state,
+        isLoading: false,
+        search: action.search,
+        error: false
+      }
+    case types.SONGS_SEARCH_ERROR:
+      // Desactivamos la flag de carga y
+      // activamos la de error
+      return {
+        ...state,
+        isLoading: false,
+        error: true
+      }
 
     default:
       return state;

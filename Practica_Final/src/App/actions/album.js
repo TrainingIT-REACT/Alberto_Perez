@@ -13,6 +13,7 @@ export const getAlbum = createAsyncAction('getAlbum', async (id) => {
 */
 import types from './types';
 import { trackAlbum } from './user';
+import { trackResponse } from './response';
 
 const albumsLoading = () => ({
   type: types.ALBUMS_LOADING
@@ -31,6 +32,7 @@ export const getAlbums = () => async (dispatch) => {
   dispatch(albumsLoading());
   try {
     const res = await fetch('/api/albums');
+    dispatch(trackResponse(res));
     const json = await res.json();
     dispatch(albumsLoaded(json));
   } catch {
@@ -56,6 +58,7 @@ export const getAlbum = (id) => async (dispatch) => {
   dispatch(albumLoading());
   try {
     const res = await fetch(`/api/albums/${id}`);
+    dispatch(trackResponse(res));
     const json = await res.json();
     //buscamos el total de las canciones
     const ress = await fetch(`/api/songs?album_id=${id}`);

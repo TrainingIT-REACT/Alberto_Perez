@@ -13,6 +13,7 @@ export const getSongsByAlbum = createAsyncAction('getSongsByAlbum', async (id) =
 */
 import types from './types';
 import { trackSong } from './user';
+import { trackResponse } from './response';
 
 const songsLoading = () => ({
   type: types.SONGS_LOADING
@@ -31,6 +32,7 @@ export const getSongs = () => async (dispatch) => {
   dispatch(songsLoading());
   try {
     const res = await fetch('/api/songs');
+    dispatch(trackResponse(res));
     const json = await res.json();
     dispatch(songsLoaded(json));
   } catch {
@@ -56,6 +58,7 @@ export const getSongsByAlbum = (id) => async (dispatch) => {
   dispatch(songsAlbumLoading());
   try {
     const res = await fetch(`/api/songs?album_id=${id}`);
+    dispatch(trackResponse(res));
     const json = await res.json();
     dispatch(songsAlbumLoaded(json));
   } catch {
@@ -83,11 +86,40 @@ export const getSong = (id) => async (dispatch) => {
   try {
     const res = await fetch(`/api/songs/${id}`);
     const json = await res.json();
-    console.log(json)
+    dispatch(trackResponse(res));
     dispatch(songLoaded(json));
     //track
     dispatch(trackSong(json));
   } catch {
     dispatch(songError());
+  }
+};
+
+
+
+const songsSearchLoading = () => ({
+  type: types.SONGS_SEARCH_LOADING
+});
+
+const songsSearchError = () => ({
+  type: types.SONGS_SEARCH_ERROR
+});
+
+const songsSearchLoaded = (list) => ({
+  type: types.SONGS_SEARCH_LOADED,
+  search: list
+})
+
+export const searchSongs = (name) => async (dispatch) => {
+  dispatch(songsSearchLoading());
+  try {
+    console.log(name);
+    const res = await fetch('/api/songs');
+    dispatch(trackResponse(res));
+    const json = await res.json();
+    //filter by name
+    dispatch(songsSearchLoaded(json.filter(d => d.name.includes(name))));
+  } catch {
+    dispatch(songsSearchError());
   }
 };

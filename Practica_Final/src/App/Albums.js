@@ -29,7 +29,7 @@ class Albums extends Component {
     } else if (this.props.error) {
       return <p>Hubo un error al obtener los datos :(</p>
     } else {
-      return <ul>{this.props.album.list.map(a => <li key={a.id} data-key={a.id} onClick={this.onClick}>{a.name}</li>)}</ul>
+      return <ul>{this.props.album.list.map(a => <li key={a.id} data-key={a.id} onClick={this.onClick} className="link">{a.name}</li>)}</ul>
     }
   }
   

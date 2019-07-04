@@ -17,7 +17,7 @@ class SongList extends Component {
   render() {
     return <ul>
       { this.props.songs.map((s) => (
-        <li key={s.id} data-key={s.id} onClick={this.onClick}>{s.name} - {s.seconds}s.</li>
+        <li key={s.id} data-key={s.id} onClick={this.onClick} className="link">{s.name} - {s.seconds}s.</li>
       ))}
     </ul>
   }
