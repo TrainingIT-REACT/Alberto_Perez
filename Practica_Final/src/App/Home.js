@@ -34,7 +34,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h2>Top 5 de Canciones Recomendadas</h2>
+        <h2>Canciones Recomendadas</h2>
         { this.renderSongs() }
         <SearchSong history={this.props.history}/>
       </div>

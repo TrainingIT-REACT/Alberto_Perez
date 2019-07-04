@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AudioPlayer from "react-h5-audio-player";
 
 // Acciones
 import { getSong } from './actions/song';
@@ -11,6 +12,7 @@ class SongPlay extends Component {
     this.props.getSong(this.props.match.params.id);
   }
 
+  
   renderSong() {
     if (this.props.isLoading) {
       return <p>Cargando...</p>
@@ -19,7 +21,12 @@ class SongPlay extends Component {
     } else {
       return <div>
               <p>Nombre: {this.props.song.song != null ? this.props.song.song.name + " - " + this.props.song.song.seconds + "s": null}</p>
-              <p>Cancion: {this.props.song.song != null ? this.props.song.song.audio: null}</p>
+              <p>        {this.props.song.song != null ? 
+                              <AudioPlayer
+                                  autoPlay={true}
+                                  src={"/api"+this.props.song.song.audio}
+                                />
+                              : null}</p>
             </div>
     }
   }
